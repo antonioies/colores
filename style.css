@@ -130,3 +130,5 @@ canvas {
     font-style: italic;
     z-index: 10;
 }
+#reset-btn { background-color: #ffc107; color: #333; }
+#reset-btn:hover { background-color: #e0a800; }

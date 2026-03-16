@@ -344,6 +344,30 @@ function createBoxes() {
     }
 }
 
+function resetSimulation() {
+    beltMoveTime = { 1: 0, 2: 0 };
+    angles.target = { ...homeAngles };
+    angles.current = { ...homeAngles };
+
+    if (heldBox) {
+        scene.remove(heldBox.mesh);
+        heldBox = null;
+    }
+
+    boxes.forEach(box => {
+        scene.remove(box.mesh);
+    });
+    boxes = [];
+
+    createBoxes(); // Esta función ya existe en tu main.js, la reutilizamos
+
+    variableState = {};
+    api.updateVariableDisplay();
+
+    document.getElementById('run-btn').disabled = false;
+    statusText.textContent = "Simulación reiniciada. Programa conservado.";
+}
+
 // --- FUNCIÓN PRINCIPAL DE ARRANQUE ---
 function main() {
     const simPanel = document.getElementById('simulation-panel');
@@ -390,6 +414,7 @@ function main() {
     });
 
     document.getElementById('run-btn').addEventListener('click', runCode);
+    document.getElementById('reset-btn').addEventListener('click', resetSimulation);
     document.getElementById('save-btn').addEventListener('click', saveWorkspace);
     document.getElementById('load-btn').addEventListener('click', () => document.getElementById('load-input').click());
     document.getElementById('load-input').addEventListener('change', loadWorkspace);
