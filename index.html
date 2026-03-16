@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación Robótica con Blockly</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/blockly@9.0.0/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly@9.0.0/javascript.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="blockly-panel">
+            <div id="blockly-div"></div>
+            <div class="button-bar">
+                <button id="run-btn">▶️ Ejecutar</button>
+                <button id="save-btn">💾 Guardar</button>
+                <button id="load-btn">📂 Cargar</button>
+            </div>
+            <div id="variable-watcher">
+                <h4>Monitor de Variables</h4>
+                <div id="variable-list">
+                    Crea una variable para verla aquí.
+                </div>
+            </div>
+            <input type="file" id="load-input" accept=".json" style="display: none;">
+        </div>
+        <div id="simulation-panel">
+            <div id="status-text">Listo para programar.</div>
+        </div>
+    </div>
+
+    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+        <category name="Movimiento Robot" colour="230">
+            <block type="move_joint"></block>
+            <block type="gripper_control"></block>
+            <block type="go_home"></block>
+            <block type="is_box_underneath"></block>
+            <block type="get_box_color"></block>
+        </category>
+        <category name="Control" colour="120">
+            <block type="wait_seconds"></block>
+            <block type="move_belt"></block>
+            <block type="controls_repeat_ext"></block>
+            <block type="controls_whileUntil"></block>
+        </category>
+        <category name="Lógica" colour="210">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_negate"></block>
+            <block type="logic_boolean"></block>
+        </category>
+        <category name="Matemáticas" colour="%{BKY_MATH_HUE}">
+            <block type="math_number"><field name="NUM">1</field></block>
+        </category>
+        <category name="Texto" colour="%{BKY_TEXTS_HUE}">
+            <block type="text"><field name="TEXT">rojo</field></block>
+        </category>
+        <category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+        <category name="Funciones" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+    </xml>
+
+    <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/" } }</script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
